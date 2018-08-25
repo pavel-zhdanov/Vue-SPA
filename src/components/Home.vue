@@ -5,10 +5,9 @@
         <v-flex xs12>
           <v-carousel>
             <v-carousel-item
-              v-for="item in ads"
+              v-for="item in promoAds"
               :key="item.id"
               :src="item.imageSrc"
-              v-if="item.promo"
               reverse-transition="fade"
               transition="fade"
             >
@@ -58,17 +57,15 @@
   export default {
     data() {
       return {
-        ads: [
-          {title: 'planet', description: 'It is a planet', promo: true,
-            imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg', id: '1'},
-          {title: 'bird', description: ' It is a bird', promo: true,
-            imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg', id: '2'},
-          {title: 'sky', description: 'It is a bird', promo: true,
-            imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg', id: '3'},
-          {title: 'squirrel', description: 'It is a squirrel', promo: false,
-            imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg', id: '4'},
-        ],
       };
+    },
+    computed: {
+      promoAds() {
+        return this.$store.getters.promoAds;
+      },
+      ads() {
+        return this.$store.getters.ads;
+      },
     },
   };
 </script>
