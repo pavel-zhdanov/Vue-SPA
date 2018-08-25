@@ -1,16 +1,16 @@
 <template>
   <v-container>
     <v-layout row>
-      <v-flex xs12>
+      <v-flex xs12 sm6 offset-sm3>
         <v-card>
           <v-card-media
-            src="https://cdn.vuetifyjs.com/images/carousel/planet.jpg"
+            :src="ad.imageSrc"
             height="300px"
           >
           </v-card-media>
           <v-card-text>
-            <h1>Lorem ipsum dolor.</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, unde.</p>
+            <h1>{{ad.title}}</h1>
+            <p>{{ad.description}}</p>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -29,6 +29,13 @@
       return {
       };
     },
+    computed: {
+      ad() {
+        const id = this.id;
+        return this.$store.getters.adById(id);
+      },
+    },
+    props: ['id'],
   };
 </script>
 
