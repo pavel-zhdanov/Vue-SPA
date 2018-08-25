@@ -47,8 +47,9 @@
             <v-btn
               color="grey darken-2"
               @click="onSubmit"
-              :disabled="!valid"
+              :disabled="!valid || loading"
               class="white--text"
+              :loading="loading"
             >Registration</v-btn>
           </v-card-actions>
         </v-card>
@@ -93,8 +94,19 @@
             password: this.password,
             name: this.name,
           };
-          console.log(user);
+          this.$store.dispatch('registerUser', user)
+            .then(() => {
+              this.$router.push('/');
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
+      },
+    },
+    computed: {
+      loading() {
+        return this.$store.getters.loading;
       },
     },
   };
