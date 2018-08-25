@@ -31,8 +31,9 @@
             <v-btn
               color="grey darken-2"
               @click="onSubmit"
-              :disabled="!valid"
+              :disabled="!valid || loading"
               class="white--text"
+              :loading="loading"
             >Login</v-btn>
           </v-card-actions>
         </v-card>
@@ -67,8 +68,19 @@
             email: this.email,
             password: this.password,
           };
-          console.log(user);
+          this.$store.dispatch('loginUser', user)
+            .then(() => {
+              this.$router.push('/');
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
+      },
+    },
+    computed: {
+      loading() {
+        return this.$store.getters.loading;
       },
     },
   };
