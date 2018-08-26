@@ -1,25 +1,20 @@
+/* eslint-disable require-jsdoc */
 import * as fb from 'firebase';
 
-/** class of user
- */
 class User {
-  /** Create an user
-   *
-   * @param {string} id -id of user
-   */
   constructor(id) {
     this.id = id;
   }
 }
-
 export default {
-  state: {},
+  state: {
+    user: null,
+  },
   mutations: {
     setUser(state, payload) {
       state.user = payload;
     },
   },
-  getters: {},
   actions: {
     async registerUser({commit}, {email, password}) {
       commit('clearError');
@@ -27,7 +22,7 @@ export default {
       try {
         const user = await fb.auth()
           .createUserWithEmailAndPassword(email, password);
-        commit('setUser', new User(user.uid));
+        commit('setUser', new User(user.user.uid));
         commit('setLoading', false);
       } catch (error) {
         commit('setLoading', false);
@@ -41,13 +36,28 @@ export default {
       try {
         const user = await fb.auth()
           .signInWithEmailAndPassword(email, password);
-        commit('setUser', new User(user.uid));
+        commit('setUser', new User(user.user.uid));
         commit('setLoading', false);
       } catch (error) {
         commit('setLoading', false);
         commit('setError', error.message);
         throw error;
       }
+    },
+    autoLoginUser({commit}, payload) {
+      commit('setUser', new User(payload.uid));
+    },
+    logoutUser({commit}) {
+      fb.auth().signOut();
+      commit('setUser', null);
+    },
+  },
+  getters: {
+    user(state) {
+      return state.user;
+    },
+    isUserLoggedIn(state) {
+      return state.user !== null;
     },
   },
 };
