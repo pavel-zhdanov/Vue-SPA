@@ -6,7 +6,7 @@ import store from './store';
 import 'vuetify/dist/vuetify.min.css';
 import fb from 'firebase/app';
 import 'firebase/auth';
-import config from '../config';
+import config from './config.js';
 
 Vue.use(Vuetify);
 Vue.config.productionTip = false;

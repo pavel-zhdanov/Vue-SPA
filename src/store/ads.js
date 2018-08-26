@@ -1,6 +1,7 @@
 /* eslint-disable require-jsdoc */
 import fb from 'firebase/app';
 import 'firebase/database';
+import 'firebase/storage';
 
 class Ad {
   constructor(title, description, ownerId, imageSrc = '',
@@ -30,19 +31,28 @@ export default {
     async createAd({commit, getters}, payload) {
       commit('clearError');
       commit('setLoading', true);
+      const image =payload.image;
       try {
         const newAd = new Ad(
           payload.title,
           payload.description,
           getters.user.id,
-          payload.imageSrc,
-          payload.promo
+          '',
+          payload.promo,
         );
         const ad = await fb.database().ref('notes').push(newAd);
+        const imageExt = image.name.slice(image.name.lastIndexOf('.'));
+        await fb.storage().ref(`notes/${ad.key}.${imageExt}`).put(image);
+        const path = await fb.storage()
+          .ref(`notes/${ad.key}.${imageExt}`).getDownloadURL();
+        const imageSrc =path;
+
+        await fb.database().ref('notes').child(ad.key).update({imageSrc});
         commit('setLoading', false);
         commit('createAd', {
           ...newAd,
           id: ad.key,
+          imageSrc,
         });
       } catch (error) {
         commit('setError', error.message);
