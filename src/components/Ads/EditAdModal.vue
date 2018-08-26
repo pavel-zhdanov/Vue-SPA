@@ -81,7 +81,8 @@
           title: this.editedTitle,
           description: this.editedDescription,
           id: this.ad.id,
-        });
+        })
+          .catch(() => {});
         this.modal = false;
       },
     },

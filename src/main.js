@@ -7,8 +7,10 @@ import 'vuetify/dist/vuetify.min.css';
 import fb from 'firebase/app';
 import 'firebase/auth';
 import config from './config.js';
+import BuyModalComponent from '@/components/shared/BuyModal';
 
 Vue.use(Vuetify);
+Vue.component('app-buy-modal', BuyModalComponent);
 Vue.config.productionTip = false;
 
 new Vue({

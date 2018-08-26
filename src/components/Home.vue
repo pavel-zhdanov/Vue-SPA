@@ -42,7 +42,7 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn flat color="grey darken-2" :to="'/ad/' + item.id">Open</v-btn>
-              <v-btn raised color="grey darken-2" class="white--text" :to="'/ad/' + item.id">Buy</v-btn>
+              <app-buy-modal :ad="item"></app-buy-modal>
             </v-card-actions>
           </v-card>
 

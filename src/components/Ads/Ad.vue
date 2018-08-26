@@ -14,8 +14,8 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <app-edit-ad-modal :ad="ad"></app-edit-ad-modal>
-            <v-btn raised color="grey darken-2" class="white--text">Buy</v-btn>
+            <app-edit-ad-modal :ad="ad" v-if="isOwner"></app-edit-ad-modal>
+            <app-buy-modal :ad="ad"></app-buy-modal>
           </v-card-actions>
         </v-card>
         <div v-else class="text-xs-center">
@@ -46,6 +46,9 @@
       },
       loading() {
         return this.$store.getters.loading;
+      },
+      isOwner() {
+        return this.ad.ownerId === this.$store.getters.user.id;
       },
     },
     props: ['id'],

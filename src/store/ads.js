@@ -26,6 +26,13 @@ export default {
     loadAds(state, payload) {
       state.ads = payload;
     },
+    updateAd(state, {title, description, id}) {
+      const ad = state.ads.find((item) => {
+        return item.id ===id;
+      });
+      ad.title = title;
+      ad.description = description;
+    },
   },
   actions: {
     async createAd({commit, getters}, payload) {
@@ -80,6 +87,26 @@ export default {
         throw error;
       }
     },
+    async updateAd({commit}, {title, description, id}) {
+      commit('clearError');
+      commit('setLoading', true);
+      try {
+        await fb.database().ref('notes').child(id).update({
+          title,
+          description,
+        });
+        commit('updateAd', {
+          title,
+          description,
+          id,
+        });
+        commit('setLoading', false);
+      } catch (error) {
+        commit('setError', error.message);
+        commit('setLoading', false);
+        throw error;
+      }
+    },
   },
   getters: {
     ads(state) {
@@ -93,8 +120,10 @@ export default {
         return item.promo;
       });
     },
-    myAds(state) {
-      return state.ads;
+    myAds(state, getters) {
+      return state.ads.filter((ad) => {
+        return ad.ownerId === getters.user.id;
+      });
     },
     adById(state) {
       return (adId)=> {
