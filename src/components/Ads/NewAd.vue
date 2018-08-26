@@ -24,7 +24,7 @@
 
         <v-layout row>
           <v-flex xs12>
-            <v-btn class="white--text mb-3" color="grey darken-2" @click="triggerUpload">Upload
+            <v-btn class="white--text mb-3" color="primary" @click="triggerUpload">Upload
               <v-icon right dark>cloud_upload</v-icon>
             </v-btn>
             <input
@@ -48,7 +48,7 @@
             <v-switch
               label="Add to promo"
               v-model="promo"
-              color="grey darken-2"
+              color="primary"
             ></v-switch>
           </v-flex>
         </v-layout>
@@ -58,7 +58,7 @@
             <v-spacer></v-spacer>
             <v-btn
               class="white--text"
-              color="grey darken-2"
+              color="primary"
               @click="createAd"
               :disabled="!valid || !image || loading"
               :loading="loading"

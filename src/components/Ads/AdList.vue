@@ -22,7 +22,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn class="white--text" color="grey darken-2" :to="'/ad/' + item.id">Open</v-btn>
+                <v-btn class="white--text" color="primary" :to="'/ad/' + item.id">Open</v-btn>
               </v-card-actions>
             </v-flex>
           </v-layout>
@@ -39,7 +39,7 @@
     <v-layout v-else>
       <<v-progress-circular
       indeterminate
-      color="grey darken-2"
+      color="primary"
       :size="200"
       :width="20"
     ></v-progress-circular>

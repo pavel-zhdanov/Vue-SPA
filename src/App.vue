@@ -34,7 +34,7 @@
     </v-navigation-drawer>
     <v-toolbar
       app
-      color="grey darken-2"
+      color="primary"
       dark
     >
       <v-toolbar-side-icon

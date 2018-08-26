@@ -47,7 +47,7 @@
               <v-btn
                 raised
                 @click="onSave"
-                color="grey darken-2"
+                color="primary"
                 class="white--text"
                 :disabled="!valid || loading"
                 :loading="loading"

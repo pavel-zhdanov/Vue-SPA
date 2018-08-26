@@ -12,7 +12,7 @@
               transition="fade"
             >
               <div class="carousel-link">
-                <v-btn class="white--text" color="grey darken-2" :to="'/ad/' + item.id">{{item.title}}</v-btn>
+                <v-btn class="white--text" color="primary" :to="'/ad/' + item.id">{{item.title}}</v-btn>
               </div>
             </v-carousel-item>
           </v-carousel>
@@ -41,7 +41,7 @@
             </v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn flat color="grey darken-2" :to="'/ad/' + item.id">Open</v-btn>
+              <v-btn flat color="primary" :to="'/ad/' + item.id">Open</v-btn>
               <app-buy-modal :ad="item"></app-buy-modal>
             </v-card-actions>
           </v-card>
@@ -57,7 +57,7 @@
       <v-flex xs12 class="text-xs-center pt-5">
         <v-progress-circular
           indeterminate
-          color="grey darken-2"
+          color="primary"
           :size="200"
           :width="20"
         ></v-progress-circular>

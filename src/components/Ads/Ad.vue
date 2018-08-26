@@ -21,7 +21,7 @@
         <div v-else class="text-xs-center">
           <v-progress-circular
             indeterminate
-            color="grey darken-2"
+            color="primary"
             :size="200"
             :width="20"
           ></v-progress-circular>

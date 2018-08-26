@@ -3,7 +3,7 @@
     width="400px"
     v-model="modal"
   >
-    <v-btn raised color="grey darken-2" class="white--text" slot="activator">Buy</v-btn>
+    <v-btn raised color="primary" class="white--text" slot="activator">Buy</v-btn>
     <v-card>
       <v-container>
         <v-layout row>
@@ -51,7 +51,7 @@
               <v-btn
                 raised
                 @click="onSave"
-                color="grey darken-2"
+                color="primary"
                 class="white--text"
                 :disabled="!valid || localLoading"
                 :loading="localLoading"

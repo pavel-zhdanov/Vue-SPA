@@ -8,8 +8,14 @@ import fb from 'firebase/app';
 import 'firebase/auth';
 import config from './config.js';
 import BuyModalComponent from '@/components/shared/BuyModal';
+import colors from 'vuetify/es5/util/colors';
 
-Vue.use(Vuetify);
+
+Vue.use(Vuetify, {
+  theme: {
+    primary: colors.red.darken1,
+  },
+});
 Vue.component('app-buy-modal', BuyModalComponent);
 Vue.config.productionTip = false;
 

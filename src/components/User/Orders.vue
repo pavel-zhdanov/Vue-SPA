@@ -4,7 +4,7 @@
       <v-flex xs12 sm6 offset-sm3 v-if="loading">
         <v-progress-circular
           indeterminate
-          color="grey darken-2"
+          color="primary"
           :size="200"
           :width="20"
         ></v-progress-circular>
@@ -24,7 +24,6 @@
               :input-value="item.done"
               @click="markDone(item)"
               color="success"
-              :disabled="item.done"
             ></v-checkbox>
           </v-list-tile-action>
 
@@ -34,7 +33,7 @@
           </v-list-tile-content>
           <v-list-tile-action>
             <v-btn
-              color="grey darken-2"
+              color="primary"
               class="white--text"
               :to="'/ad/' + item.adId"
             >Open</v-btn>
