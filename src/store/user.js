@@ -1,5 +1,5 @@
 /* eslint-disable require-jsdoc */
-import * as fb from 'firebase';
+import fb from 'firebase/app';
 
 class User {
   constructor(id) {

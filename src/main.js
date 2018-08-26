@@ -4,7 +4,8 @@ import router from './router';
 import Vuetify from 'vuetify';
 import store from './store';
 import 'vuetify/dist/vuetify.min.css';
-import * as fb from 'firebase';
+import fb from 'firebase/app';
+import 'firebase/auth';
 
 Vue.use(Vuetify);
 Vue.config.productionTip = false;
