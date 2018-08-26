@@ -53,7 +53,8 @@
               class="white--text"
               color="grey darken-2"
               @click="createAd"
-              :disabled="!valid"
+              :disabled="!valid || loading"
+              :loading="loading"
             >Create Ad</v-btn>
           </v-flex>
         </v-layout>
@@ -73,6 +74,11 @@
         promo: false,
       };
     },
+    computed: {
+      loading() {
+        return this.$store.getters.loading;
+      },
+    },
     methods: {
       createAd() {
         if (this.$refs.form.validate()) {
@@ -82,8 +88,11 @@
             promo: this.promo,
             imageSrc: 'https://user-images.githubusercontent.com/7110136/29002857-9e802f08-7ab4-11e7-9c31-604b5d0d0c19.png',
           };
-          this.$store.dispatch('createAd', ad);
-          console.log(ad);
+          this.$store.dispatch('createAd', ad)
+            .then(() => {
+              this.$router.push('/list');
+            })
+            .catch(() => {});
         }
       },
     },
